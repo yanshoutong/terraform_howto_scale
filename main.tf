@@ -22,6 +22,7 @@ provider "alicloud" {
   region = "cn-chengdu"
 }
 
+# zhangjiakou
 module "ecs_zhangjiakou" {
   source            = "./ecs"
   enable            = var.region == "cn-zhangjiakou" ? true : false
@@ -32,4 +33,17 @@ module "ecs_zhangjiakou" {
 
 output "ecs_zhangjiakou_ip_addresses" {
     value = module.ecs_zhangjiakou.public_ip_addresses
+}
+
+# huhehaote
+module "ecs_huhehaote" {
+  source            = "./ecs"
+  enable            = var.region == "cn-huhehaote" ? true : false
+  region            = var.region
+  availability_zone = var.zone
+  scale_count       = var.scale_count
+}
+
+output "ecs_huhehaote_ip_addresses" {
+    value = module.ecs_huhehaote.public_ip_addresses
 }
